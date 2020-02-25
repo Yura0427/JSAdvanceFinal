@@ -1,0 +1,113 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-5 col-sm-4 col-md-3 col-lg-2">
+      <div class="flex-column nav-pills">
+        <div class="sidebar">
+          <p>Виробник</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">1</label>
+          </div>
+          <div class="form-check ">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">2</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+            <label class="form-check-label" for="inlineCheckbox3">3 </label>
+          </div>
+        </div>
+        <div class="sidebar">
+          <form>
+            <p>Цiна</p>
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="From">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="To">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="sidebar">
+          <p>Тип</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">1</label>
+          </div>
+          <div class="form-check ">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">2</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+            <label class="form-check-label" for="inlineCheckbox3">3 </label>
+          </div>
+        </div>
+        <div class="sidebar">
+          <p>Розмір рами</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">1</label>
+          </div>
+          <div class="form-check ">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">2</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+            <label class="form-check-label" for="inlineCheckbox3">3 </label>
+          </div>
+        </div>
+        <div class="sidebar">
+          <p>Діаметр коліс</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">1</label>
+          </div>
+          <div class="form-check ">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">2</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+            <label class="form-check-label" for="inlineCheckbox3">3 </label>
+          </div>
+        </div>
+        <div class="sidebar">
+          <p>Кількість швидкостей</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">1</label>
+          </div>
+          <div class="form-check ">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">2</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+            <label class="form-check-label" for="inlineCheckbox3">3 </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+      <div class="tab-content">
+        <div class="row">
+          <div class="card col-xs-12 col-md-6 col-lg-3 mt-2" *ngFor="let pr of products">
+            <!-- <img [attr.src]="" class="card-img-top" > -->
+            <img src="../../../assets/img/95275384_images_12533198716.jpg" alt="" style="width: 100%;">
+            <div class="card-body">
+              <h5 class="card-title">{{pr.brend}}</h5>
+              <p class="card-text">Тип: {{pr.type}}</p>
+              <p class="card-text">{{pr.sizeFrame}}, {{pr.sizeWheel}}</p>
+              <h3 class="text-danger">{{pr.price}} ₴</h3>
+              <a class="btn btn-primary" [routerLink]="[ '/menu/'+pr.categoryName, pr.id ]">more details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

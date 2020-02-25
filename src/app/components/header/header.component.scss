@@ -1,0 +1,23 @@
+@media (min-width: 767px) {
+  li>a:hover {
+    transform: scale(1.1);
+    transition: .5s;
+  }
+}
+
+@media (max-width: 767px) {
+  li {
+    border-bottom: 3px solid gray;
+  }
+}
+
+@media (min-width: 991px) {
+  li {
+    margin-left: 40px !important;
+  }
+}
+
+a{
+  font-family: 'Acme';
+  font-size: 20px;
+}

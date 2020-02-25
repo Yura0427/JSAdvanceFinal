@@ -1,0 +1,13 @@
+slide {
+  max-height: 500px;
+}
+
+slide img {
+  min-height: 150px;
+}
+
+@media (max-width: 576px) {
+  .jumbotron>div>img {
+    display: none;
+  }
+}

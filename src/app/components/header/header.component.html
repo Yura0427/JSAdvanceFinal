@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#"><img style="opacity: .8; border-radius: 30px;" src="../../../assets/img/velo-logo.jpg" alt=""></a> -->
+    <a class="navbar-brand" href="#"><i style="opacity: .8;" class="fas fa-bicycle fa-3x"></i></a>    
+    
+    <button (click)="isMenuCollapsed = !isMenuCollapsed" class="navbar-toggler" type="button" data-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item " style="margin-left: 10px;">
+          <a class="nav-link" (click)="isMenuCollapsed = true" [routerLink]="[ '/home' ]" routerLinkActive="active">Home
+          </a>
+        </li>
+        <li class="nav-item " style="margin-left: 10px;">
+          <a class="nav-link" (click)="isMenuCollapsed = true" [routerLink]="[ '/shop' ]"
+            routerLinkActive="active">Shop</a>
+        </li>
+        <li class="nav-item " style="margin-left: 10px;">
+          <a class="nav-link" (click)="isMenuCollapsed = true" [routerLink]="[ '/blog' ]"
+            routerLinkActive="active">Blog</a>
+        </li>
+        <li class="nav-item " style="margin-left: 10px;">
+          <a class="nav-link" (click)="isMenuCollapsed = true" [routerLink]="[ '/contacts' ]"
+            routerLinkActive="active">Contacts</a>
+        </li>
+        <li class="nav-item " style="margin-left: 10px;">
+          <a class="nav-link" (click)="isMenuCollapsed = true" [routerLink]="[ '/admin' ]"
+            routerLinkActive="active">Admin</a>
+        </li>
+      </ul>
+      <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+        <button (click)="openModal(template)" class="btn btn-outline-success my-2 " type="button" style="margin-left: 10px;">Login</button>
+
+    </div>
+
+  </div>
+
+</nav>
+ 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left "><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i></h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+      <li [ngbNavItem]="1">
+        <a ngbNavLink>SignIn</a>
+        <ng-template ngbNavContent>
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <button (click)="SignInUser()" type="submit" class="btn btn-primary">SignIn</button>
+          </form>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="2">
+        <a ngbNavLink>SignUp</a>
+        <ng-template ngbNavContent>
+          <form>
+            <div class="form-group">
+              <label for="exampleInputName">Name</label>
+              <input [(ngModel)]="userName" name="userName" type="text" class="form-control" id="exampleInputName" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input [(ngModel)]="userEmail" name="userEmail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input [(ngModel)]="userPass" name="userPass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <!-- <div class="form-group">
+              <label for="exampleInputPassword2">Confirm Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password">
+            </div> -->
+            <button (click)="newUser()" type="submit" class="btn btn-primary">SignUp</button>            
+          </form>
+        </ng-template>
+      </li>
+    </ul>
+    
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+  </div>
+</ng-template>
