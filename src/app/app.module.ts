@@ -9,6 +9,8 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +28,9 @@ import { AdminComponent } from './admin/admin.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 
 
 
@@ -45,6 +50,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
     AdminComponent,
     AdminUsersComponent,
     AdminProductsComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +63,11 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
+    AccordionModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]

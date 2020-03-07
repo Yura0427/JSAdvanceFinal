@@ -6,6 +6,7 @@ export class User {
     userEmail: string;
     userPass: string;
     userAdmin: boolean;
+    loginStatus:boolean
 
 }
 // export class User implements IUser{

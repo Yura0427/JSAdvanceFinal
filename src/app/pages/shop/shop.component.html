@@ -3,91 +3,102 @@
     <div class="col-5 col-sm-4 col-md-3 col-lg-2">
       <div class="flex-column nav-pills">
         <div class="sidebar">
-          <p>Виробник</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">1</label>
-          </div>
-          <div class="form-check ">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-            <label class="form-check-label" for="inlineCheckbox2">2</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-            <label class="form-check-label" for="inlineCheckbox3">3 </label>
+          <p>Виробник
+            <i *ngIf="!dropBrend" (click)="dropBrend=true" class="fa fa-angle-down" aria-hidden="true"></i>
+            <i *ngIf="dropBrend" (click)="dropBrend=false" class="fa fa-angle-up" aria-hidden="true"></i>
+          </p>
+          <div *ngIf="dropBrend">
+            <div class="form-check" *ngFor="let item of arrBrend">
+              <label class="form-check-label"><input (change)="getSelected($event)" class="form-check-input"
+                  type="checkbox" value="{{item.brend}}">{{item.brend}}</label>
+            </div>
           </div>
         </div>
         <div class="sidebar">
           <form>
-            <p>Цiна</p>
-            <div class="form-row">
-              <div class="col">
-                <input type="text" class="form-control" placeholder="From">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="To">
+            <p>Цiна
+              <i *ngIf="!dropPrice" (click)="dropPrice=true" class="fa fa-angle-down" aria-hidden="true"></i>
+              <i *ngIf="dropPrice" (click)="dropPrice=false" class="fa fa-angle-up" aria-hidden="true"></i>
+            </p>
+            <div *ngIf="dropPrice">
+              <div class="form-row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="From">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="To">
+                </div>
               </div>
             </div>
           </form>
         </div>
         <div class="sidebar">
-          <p>Тип</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">1</label>
-          </div>
-          <div class="form-check ">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-            <label class="form-check-label" for="inlineCheckbox2">2</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-            <label class="form-check-label" for="inlineCheckbox3">3 </label>
-          </div>
-        </div>
-        <div class="sidebar">
-          <p>Розмір рами</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">1</label>
-          </div>
-          <div class="form-check ">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-            <label class="form-check-label" for="inlineCheckbox2">2</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-            <label class="form-check-label" for="inlineCheckbox3">3 </label>
+          <p>Тип
+            <i *ngIf="!dropType" (click)="dropType=true" class="fa fa-angle-down" aria-hidden="true"></i>
+            <i *ngIf="dropType" (click)="dropType=false" class="fa fa-angle-up" aria-hidden="true"></i>
+          </p>
+          <div *ngIf="dropType">
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">Дорожній</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">Гірський</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">Шосейний</label>
+            </div>
           </div>
         </div>
         <div class="sidebar">
-          <p>Діаметр коліс</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">1</label>
-          </div>
-          <div class="form-check ">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-            <label class="form-check-label" for="inlineCheckbox2">2</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-            <label class="form-check-label" for="inlineCheckbox3">3 </label>
+          <p>Розмір рами
+            <i *ngIf="!dropFrame" (click)="dropFrame=true" class="fa fa-angle-down" aria-hidden="true"></i>
+            <i *ngIf="dropFrame" (click)="dropFrame=false" class="fa fa-angle-up" aria-hidden="true"></i>
+          </p>
+          <div *ngIf="dropFrame">
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">XS</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">S</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">M</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">L</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">XL</label>
+            </div>
           </div>
         </div>
         <div class="sidebar">
-          <p>Кількість швидкостей</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">1</label>
+          <p>Діаметр коліс
+            <i *ngIf="!dropWheel" (click)="dropWheel=true" class="fa fa-angle-down" aria-hidden="true"></i>
+            <i *ngIf="dropWheel" (click)="dropWheel=false" class="fa fa-angle-up" aria-hidden="true"></i>
+          </p>
+          <div *ngIf="dropWheel">
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">24"</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">26"</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">27.5"</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">29"</label>
+            </div>
           </div>
-          <div class="form-check ">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-            <label class="form-check-label" for="inlineCheckbox2">2</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-            <label class="form-check-label" for="inlineCheckbox3">3 </label>
+        </div>
+        <div class="sidebar">
+          <p>Кількість швидкостей
+            <i *ngIf="!dropSpeeds" (click)="dropSpeeds=true" class="fa fa-angle-down" aria-hidden="true"></i>
+            <i *ngIf="dropSpeeds" (click)="dropSpeeds=false" class="fa fa-angle-up" aria-hidden="true"></i>
+          </p>
+          <div *ngIf="dropSpeeds">
+
           </div>
         </div>
       </div>
@@ -96,14 +107,13 @@
       <div class="tab-content">
         <div class="row">
           <div class="card col-xs-12 col-md-6 col-lg-3 mt-2" *ngFor="let pr of products">
-            <!-- <img [attr.src]="" class="card-img-top" > -->
-            <img src="../../../assets/img/95275384_images_12533198716.jpg" alt="" style="width: 100%;">
+            <img [src]="pr.productImage" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">{{pr.brend}}</h5>
               <p class="card-text">Тип: {{pr.type}}</p>
               <p class="card-text">{{pr.sizeFrame}}, {{pr.sizeWheel}}</p>
               <h3 class="text-danger">{{pr.price}} ₴</h3>
-              <a class="btn btn-primary" [routerLink]="[ '/menu/'+pr.categoryName, pr.id ]">more details</a>
+              <a class="btn btn-primary" [routerLink]="[ '/shop/', pr.key ]">more details</a>
             </div>
           </div>
         </div>

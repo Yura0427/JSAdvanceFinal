@@ -1,1 +1,95 @@
-<p>admin-products works!</p>
+<form class="form-group ml-2">
+  <!-- col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 -->
+  <div class="d-flex flex-wrap">
+    <div class="input-group my-2">
+      <select title="Виробник" class="custom-select" [(ngModel)]="brendVal" name="brendVal">
+        <option selected disabled>Виробник</option>
+        <option *ngFor="let item of arrBrend">{{item.brend}}</option>
+      </select>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="openModal(template)">Add</button>
+      </div>
+    </div>
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Brend</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control my-2" placeholder="Brend" [(ngModel)]="newBrendVal" name="newBrendVal">
+        <button class="btn btn-outline-secondary" type="button" (click)="newBrend()">Add</button>
+
+      </div>
+    </ng-template>
+
+    <div class="input-group my-2">
+      <input type="number" class="form-control" placeholder="Цiна" [(ngModel)]="price" name="price">
+      <div class="input-group-append">
+        <span class="input-group-text">grn</span>
+      </div>
+    </div>
+    
+    <div class="input-group my-2">
+      <select class="custom-select" [(ngModel)]="numbSpeeds" name="numbSpeeds">
+        <option value="" disabled>Кількість швидкостей</option>
+        <option> 1</option>
+        <option> 3</option>
+        <option>20</option>
+        <option>24</option>
+        <option>27</option>
+      </select>
+      
+      <select class="custom-select" [(ngModel)]="type" name="type">
+        <option selected>Тип</option>
+        <option>Дорожній</option>
+        <option>Гірський</option>
+        <option>Шосейний</option>
+      </select>
+    </div>
+    <div class="input-group my-2">
+
+      <select class="custom-select col-md-6 my-1 " [(ngModel)]="sizeFrame" name="sizeFrame">
+        <option selected>Розмір рами</option>
+        <option>XS</option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+      <select class="custom-select col-md-6 my-1 " [(ngModel)]="sizeWheel" name="sizeWheel">
+        <option selected>Діаметр коліс</option>
+        <option>24"</option>
+        <option>26"</option>
+        <option>27.5"</option>
+        <option>29"</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="card-body">
+      <h5 class="card-title">Select a file for upload:</h5>
+      <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+      <br><br>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <br>
+      <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+          File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
+      </div>
+      <br>
+      <div class="btn-group" role="group" *ngIf="uploadState | async; let state">
+          <button type="button" class="btn btn-primary" (click)="task.pause()" [disabled]="state === 'paused'">Pause</button>
+          <button type="button" class="btn btn-primary" (click)="task.cancel()" [disabled]="!(state === 'paused' || state === 'running')">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)="task.resume()" [disabled]="state === 'running'">Resume</button>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="form-group">
+    <label for="exampleFormControlFile1">Add foto</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div> -->
+  <button type="submit" class="btn btn-primary" (click)="newProduct()">Add product</button>
+</form>

@@ -12,7 +12,7 @@ export class AdminUsersComponent implements OnInit {
 
   @Input() user: User;
 
-  users:any;
+  users:Array<User>;
 
   constructor(private userService: UsersService) { }
 
@@ -35,11 +35,11 @@ export class AdminUsersComponent implements OnInit {
   deleteUsers() {
     this.userService.deleteAll();
   }
-  // updateActive(isActive: boolean) {
-  //   this.customerService
-  //     .updateCustomer(this.customer.key, { active: isActive })
-  //     .catch(err => console.log(err));
-  // }
+  updateActive(isActive: boolean, user) {
+    this.userService
+      .updateUser(user.key, { userAdmin: isActive })
+      .catch(err => console.log(err));
+  }
  
   deleteUser(user) {
     // console.log(user.key)
