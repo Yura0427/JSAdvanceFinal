@@ -31,6 +31,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterPipe } from './shared/pipes/filter.pipe';
+import { BasketComponent } from './pages/basket/basket.component';
 
 
 
@@ -51,6 +52,7 @@ import { FilterPipe } from './shared/pipes/filter.pipe';
     AdminUsersComponent,
     AdminProductsComponent,
     FilterPipe,
+    BasketComponent,
   ],
   imports: [
     BrowserModule,

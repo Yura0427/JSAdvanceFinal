@@ -8,7 +8,7 @@
             <i *ngIf="dropBrend" (click)="dropBrend=false" class="fa fa-angle-up" aria-hidden="true"></i>
           </p>
           <div *ngIf="dropBrend">
-            <div class="form-check" *ngFor="let item of arrBrend">
+            <div class="form-check" *ngFor="let item of arrBrend ">
               <label class="form-check-label"><input (change)="getSelected($event)" class="form-check-input"
                   type="checkbox" value="{{item.brend}}">{{item.brend}}</label>
             </div>
@@ -98,7 +98,18 @@
             <i *ngIf="dropSpeeds" (click)="dropSpeeds=false" class="fa fa-angle-up" aria-hidden="true"></i>
           </p>
           <div *ngIf="dropSpeeds">
-
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">1</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">3</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">24</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input class="form-check-input" type="checkbox">27</label>
+            </div>
           </div>
         </div>
       </div>
@@ -106,7 +117,7 @@
     <div class="col-7 col-sm-8 col-md-9 col-lg-10">
       <div class="tab-content">
         <div class="row">
-          <div class="card col-xs-12 col-md-6 col-lg-3 mt-2" *ngFor="let pr of products">
+          <div class="card col-xs-12 col-md-6 col-lg-3 mt-2" *ngFor="let pr of products | filter: filterBrend">
             <img [src]="pr.productImage" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">{{pr.brend}}</h5>

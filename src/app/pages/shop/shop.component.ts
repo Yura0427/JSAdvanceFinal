@@ -12,30 +12,27 @@ import { BrendService } from 'src/app/shared/services/brend.service';
 })
 export class ShopComponent implements OnInit {
 
-  // dropBrend:boolean
-  // dropPrice:boolean
-  // dropType:boolean
-  // dropFrame:boolean
-  // dropWheel:boolean
-  // dropSpeeds:boolean
   arrBrend: Array<Brend>;
-  
   products: Array<Product>
 
+  dropBrend: boolean = true
+  dropPrice: boolean = true
+  dropType: boolean = true
+  dropFrame: boolean = true
+  dropWheel: boolean = true
+  dropSpeeds: boolean = true
+
   //filter
-  filBrend :string
-  filterItem
-  
+  filterBrend = []
+
   constructor(private productService: ProductsService,
-              private brendService: BrendService) { }
+    private brendService: BrendService) { }
 
   ngOnInit() {
     this.getProductsList()
     this.getBrendsList()
   }
   getProductsList() {
-    console.log(this.productService.getProductsList().snapshotChanges())
-
     this.productService.getProductsList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -46,6 +43,7 @@ export class ShopComponent implements OnInit {
       this.products = products;
     });
   }
+
   getBrendsList() {
     this.brendService.getBrendsList().snapshotChanges().pipe(
       map(changes =>
@@ -57,12 +55,13 @@ export class ShopComponent implements OnInit {
       this.arrBrend = arrBrend;
     });
   }
-  getSelected(event){
-    // this.arrBrend.filter(arr => arr.brend==event.target.value)
-    // this.filBrend.push(event.target.value)
-    this.products = this.products.filter(arr=>{return arr.brend == event.target.value})
-    console.log(this.filBrend)
-    console.log(event.target)
+
+  getSelected(event) {
+    if (event.target.checked) { this.filterBrend.push(event.target.value) }
+    if (!event.target.checked) {
+      this.filterBrend.splice(this.filterBrend.findIndex(arr =>
+        arr === `${event.target.value}`), 1)
+    }
   }
-  
+
 }

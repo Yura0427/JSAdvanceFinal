@@ -30,12 +30,15 @@
             routerLinkActive="active">Admin</a>
         </li>
       </ul>
-      <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+      
       <button *ngIf="!currentUser?.loginStatus" (click)="openModal(template)" class="btn btn-outline-success my-2 "
-        type="button" style="margin-left: 10px;">Login</button>
+        type="button" style="margin-left: 10px;"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</button>
       <button *ngIf="currentUser?.loginStatus" (click)="openModal(template)" class="btn my-2 "
         type="button" style="margin-left: 10px;">Hi <i class="fa fa-user-circle" aria-hidden="true"></i>
         {{currentUser.userName}}</button>
+        <button [routerLink]="[ '/basket' ]" routerLinkActive="active" class="btn my-2" type="button">
+          <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+        </button>
     </div>
 
   </div>
