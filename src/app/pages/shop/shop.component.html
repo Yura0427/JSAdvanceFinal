@@ -23,13 +23,14 @@
             <div *ngIf="dropPrice">
               <div class="form-row">
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="From">
+                  <input type="text" class="form-control" placeholder="From" [(ngModel)]="minPrise" name="minPrise">
                 </div>
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="To">
+                  <input type="text" class="form-control" placeholder="To" [(ngModel)]="maxPrise" name="maxPrise">
                 </div>
               </div>
             </div>
+            <!-- <ng5-slider [(value)]="minPrise" [(highValue)]="maxPrise" [options]="options"></ng5-slider> -->
           </form>
         </div>
         <div class="sidebar">
@@ -39,13 +40,16 @@
           </p>
           <div *ngIf="dropType">
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">Дорожній</label>
+              <label class="form-check-label"><input (change)="getSelectedType($event)" class="form-check-input"
+                  type="checkbox" value="Дорожній">Дорожній</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">Гірський</label>
+              <label class="form-check-label"><input (change)="getSelectedType($event)" class="form-check-input"
+                  type="checkbox" value="Гірський">Гірський</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">Шосейний</label>
+              <label class="form-check-label"><input (change)="getSelectedType($event)" class="form-check-input"
+                  type="checkbox" value="Шосейний">Шосейний</label>
             </div>
           </div>
         </div>
@@ -56,19 +60,24 @@
           </p>
           <div *ngIf="dropFrame">
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">XS</label>
+              <label class="form-check-label"><input (change)="getSelectedFrame($event)" class="form-check-input"
+                  type="checkbox" value="XS">XS</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">S</label>
+              <label class="form-check-label"><input (change)="getSelectedFrame($event)" class="form-check-input"
+                  type="checkbox" value="S">S</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">M</label>
+              <label class="form-check-label"><input (change)="getSelectedFrame($event)" class="form-check-input"
+                  type="checkbox" value="M">M</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">L</label>
+              <label class="form-check-label"><input (change)="getSelectedFrame($event)" class="form-check-input"
+                  type="checkbox" value="L">L</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">XL</label>
+              <label class="form-check-label"><input (change)="getSelectedFrame($event)" class="form-check-input"
+                  type="checkbox" value="XL">XL</label>
             </div>
           </div>
         </div>
@@ -79,16 +88,20 @@
           </p>
           <div *ngIf="dropWheel">
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">24"</label>
+              <label class="form-check-label"><input (change)="getSelectedWheel($event)" class="form-check-input"
+                  type="checkbox" value='24"'>24"</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">26"</label>
+              <label class="form-check-label"><input (change)="getSelectedWheel($event)" class="form-check-input"
+                  type="checkbox" value='26"'>26"</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">27.5"</label>
+              <label class="form-check-label"><input (change)="getSelectedWheel($event)" class="form-check-input"
+                  type="checkbox" value='27.5"'>27.5"</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">29"</label>
+              <label class="form-check-label"><input (change)="getSelectedWheel($event)" class="form-check-input"
+                  type="checkbox" value='29"'>29"</label>
             </div>
           </div>
         </div>
@@ -99,16 +112,24 @@
           </p>
           <div *ngIf="dropSpeeds">
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">1</label>
+              <label class="form-check-label"><input (change)="getSelectedSpeeds($event)" class="form-check-input"
+                  type="checkbox" value="1">1</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">3</label>
+              <label class="form-check-label"><input (change)="getSelectedSpeeds($event)" class="form-check-input"
+                  type="checkbox" value="3">3</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">24</label>
+              <label class="form-check-label"><input (change)="getSelectedSpeeds($event)" class="form-check-input"
+                  type="checkbox" value="21">21</label>
             </div>
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox">27</label>
+              <label class="form-check-label"><input (change)="getSelectedSpeeds($event)" class="form-check-input"
+                  type="checkbox" value="24">24</label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label"><input (change)="getSelectedSpeeds($event)" class="form-check-input"
+                  type="checkbox" value="27">27</label>
             </div>
           </div>
         </div>
@@ -117,14 +138,27 @@
     <div class="col-7 col-sm-8 col-md-9 col-lg-10">
       <div class="tab-content">
         <div class="row">
-          <div class="card col-xs-12 col-md-6 col-lg-3 mt-2" *ngFor="let pr of products | filter: filterBrend">
+          <div class="col-12">
+            <a [class.active]="order === 'price'" (click)="setOrder('price')">
+              Price <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+            </a>
+            <a [class.active]="order === 'dateAdd'" (click)="setOrder('dateAdd')">
+              dateAdd <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+            </a>
+          </div>
+
+          <div class="card col-xs-12 col-md-6 col-lg-3 mt-2" *ngFor="let pr of products | filter:selectedBrend 
+          | filType:selectedType | filPrice:minPrise:maxPrise | filFrame:selectedFrame | filWheel:selectedWheel
+          | filSpeeds:selectedSpeeds | orderBy: order:reverse:false">
             <img [src]="pr.productImage" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">{{pr.brend}}</h5>
               <p class="card-text">Тип: {{pr.type}}</p>
               <p class="card-text">{{pr.sizeFrame}}, {{pr.sizeWheel}}</p>
               <h3 class="text-danger">{{pr.price}} ₴</h3>
-              <a class="btn btn-primary" [routerLink]="[ '/shop/', pr.key ]">more details</a>
+              <a class="btn btn-primary mr-1 mt-1" [routerLink]="[ '/shop/', pr.key ]">more details</a>
+              <button class="btn btn-primary mt-1" (click)="buy(pr)">Buy</button>
+
             </div>
           </div>
         </div>

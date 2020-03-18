@@ -5,3 +5,13 @@
 .container-fluid{
     min-height: 75vh;
 }
+
+div a span {
+    visibility: hidden;
+}
+div a.active {
+    color: red;
+}
+div a.active span {
+    visibility: visible;
+}

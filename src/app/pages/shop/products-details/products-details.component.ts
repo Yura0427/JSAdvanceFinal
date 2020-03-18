@@ -32,7 +32,8 @@ export class ProductsDetailsComponent implements OnInit {
 
   buy() {
     const key = this.route.snapshot.paramMap.get('key');
-    this.data.key = key
+    this.data.key = key;
+    this.data.quantity = 1
     localStorage.setItem(`${key}`, JSON.stringify(this.data))
     // console.log(JSON.stringify(this.data), key)  
   }

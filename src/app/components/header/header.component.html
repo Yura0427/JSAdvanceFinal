@@ -30,15 +30,18 @@
             routerLinkActive="active">Admin</a>
         </li>
       </ul>
-      
-      <button *ngIf="!currentUser?.loginStatus" (click)="openModal(template)" class="btn btn-outline-success my-2 "
-        type="button" style="margin-left: 10px;"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</button>
-      <button *ngIf="currentUser?.loginStatus" (click)="openModal(template)" class="btn my-2 "
-        type="button" style="margin-left: 10px;">Hi <i class="fa fa-user-circle" aria-hidden="true"></i>
+
+      <button *ngIf="!currentUser?.loginStatus" (click)="isMenuCollapsed = true" (click)="openModal(template)"
+        class="btn btn-outline-success my-2 " type="button" style="margin-left: 10px;"><i class="fa fa-sign-in"
+          aria-hidden="true"></i>Login</button>
+      <button *ngIf="currentUser?.loginStatus" (click)="isMenuCollapsed = true" (click)="openModal(template1)"
+        class="btn my-2 " type="button" style="margin-left: 10px;">Hi <i class="fa fa-user-circle"
+          aria-hidden="true"></i>
         {{currentUser.userName}}</button>
-        <button [routerLink]="[ '/basket' ]" routerLinkActive="active" class="btn my-2" type="button">
-          <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
-        </button>
+      <button (click)="isMenuCollapsed = true" [routerLink]="[ '/basket' ]" routerLinkActive="active" class="btn my-2"
+        type="button">
+        <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+      </button>
     </div>
 
   </div>
@@ -106,59 +109,27 @@
 
 <ng-template #template1>
   <div class="modal-header">
-    <h4 class="modal-title pull-left "><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i></h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-      <li [ngbNavItem]="1">
-        <a ngbNavLink>SignIn</a>
-        <ng-template ngbNavContent>
-          <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input [(ngModel)]="SignInEmail" name="SignInEmail" type="email" class="form-control"
-                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input [(ngModel)]="SignInPass" name="SignInPass" type="password" class="form-control"
-                id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <button (click)="SignInUser()" type="submit" class="btn btn-primary">SignIn</button>
-          </form>
-        </ng-template>
-      </li>
-      <li [ngbNavItem]="2">
-        <a ngbNavLink>SignUp</a>
-        <ng-template ngbNavContent>
-          <form>
-            <div class="form-group">
-              <label for="exampleInputName">Name</label>
-              <input [(ngModel)]="userName" name="userName" type="text" class="form-control" id="exampleInputName"
-                placeholder="Name">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input [(ngModel)]="userEmail" name="userEmail" type="email" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input [(ngModel)]="userPass" name="userPass" type="password" class="form-control"
-                id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <button (click)="newUser()" type="submit" class="btn btn-primary">SignUp</button>
-          </form>
-        </ng-template>
-      </li>
-    </ul>
+  <form>
+    <div class="imgcontainer">
+      <img src="../../../assets/img/male_avatar.png" alt="Avatar" class="avatar">
+    </div>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" disabled>
 
-    <div [ngbNavOutlet]="nav" class="mt-2">dxcvxcv</div>
+      <label for="psw"><b>Password</b></label>
+      <input type="text" placeholder="Enter Password" name="psw" disabled>
 
-  </div>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Password" name="email" disabled>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" class="cancelbtn">Log Out</button>
+    </div>
+  </form>
 </ng-template>

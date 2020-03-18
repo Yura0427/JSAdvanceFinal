@@ -1,0 +1,9 @@
+tr th span {
+    visibility: hidden;
+}
+tr th.active {
+    color: red;
+}
+tr th.active span {
+    visibility: visible;
+}

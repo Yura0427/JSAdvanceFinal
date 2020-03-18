@@ -26,30 +26,13 @@
     <div class="row text-center">
       <div class="col-12 my-2">
         <p>НОВІ НАДХОДЖЕННЯ</p>
+      </div>      
+      <div class="col-xs-12 col-sm-6 col-md-4 product" *ngFor="let item of products | orderBy:'dateAdd':true">
+        <img [src]="item.productImage" class="card-img-top">
+        <p>{{item.brend}}</p>
       </div>
       
-      
-      <div class="col-xs-12 col-sm-6 col-md-4" >
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, dignissimos.</p>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, dignissimos.</p>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, dignissimos.</p>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, dignissimos.</p>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, dignissimos.</p>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, dignissimos.</p>
-      </div>
       <div class="col-12 my-2">
-        <!-- <button class="btn btn-outline-info" [routerLink]="[ '' ]" (click)="rod()">ОГЛЯД </button> -->
-
         <button class="btn btn-outline-info" [routerLink]="[ '/shop' ]">ОГЛЯД КОЛЕКЦІЇ</button>
       </div>
 

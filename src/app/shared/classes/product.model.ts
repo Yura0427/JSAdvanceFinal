@@ -7,6 +7,7 @@ export class Product {
     sizeWheel: string;
     speedsNumber: number;    
     productImage: string;
+    dateAdd:any
 }
 // import { IProduct } from '../interfaces/products.interfaces';
 

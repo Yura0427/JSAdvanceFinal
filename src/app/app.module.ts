@@ -22,7 +22,6 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { ProductsComponent } from './pages/shop/products/products.component';
 import { ProductsDetailsComponent } from './pages/shop/products-details/products-details.component';
 import { AdminComponent } from './admin/admin.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -32,9 +31,14 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { BasketComponent } from './pages/basket/basket.component';
-
-
-
+import { FilTypePipe } from './shared/pipes/fil-type.pipe';
+import { FilPricePipe } from './shared/pipes/fil-price.pipe';
+import { Ng5SliderModule } from 'ng5-slider';
+import { AdminOrderComponent } from './admin/admin-order/admin-order/admin-order.component';
+import { FilFramePipe } from './shared/pipes/fil-frame.pipe';
+import { FilWheelPipe } from './shared/pipes/fil-wheel.pipe';
+import { FilSpeedsPipe } from './shared/pipes/fil-speeds.pipe';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -46,13 +50,18 @@ import { BasketComponent } from './pages/basket/basket.component';
     ShopComponent,
     ContactsComponent,
     BlogComponent,
-    ProductsComponent,
     ProductsDetailsComponent,
     AdminComponent,
     AdminUsersComponent,
     AdminProductsComponent,
     FilterPipe,
     BasketComponent,
+    FilTypePipe,
+    FilPricePipe,
+    AdminOrderComponent,
+    FilFramePipe,
+    FilWheelPipe,
+    FilSpeedsPipe,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +78,9 @@ import { BasketComponent } from './pages/basket/basket.component';
     AngularFireStorageModule,
     AngularFireAuthModule,
     AccordionModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng5SliderModule,
+    OrderModule,
   ],
   providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]

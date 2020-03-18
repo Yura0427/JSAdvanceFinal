@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { BasketComponent } from './pages/basket/basket.component';
+import { AdminOrderComponent } from './admin/admin-order/admin-order/admin-order.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'users', pathMatch: 'full' },
       { path: 'users', component: AdminUsersComponent },
       { path: 'products', component: AdminProductsComponent },
-
+      { path: 'order', component: AdminOrderComponent },
     ]
   }
 
