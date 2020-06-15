@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th> # </th>
+      <!-- <th> Name </th> -->
+      <th> Contacts: </th>
+      <th> Orders </th>
+      <th> Done </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders; let i=index">
+      <td>{{i+1}} <br> {{order.name}}</td>
+      <!-- <td>{{order.name}}</td> -->
+      <td>м.{{order.city}} вул.{{order.address}}, обл.{{order.state}},<br> Email {{order.email}} <br>Phone number {{order.tel}}</td>
+      <td>
+        <p *ngFor="let item of order.orders; let i=index">
+          Zamovlena {{i+1}}<br>
+          {{item}}
+        </p>
+      </td>
+      <td>
+        <input type="button" (click)="doneOrder(order)" value="Done" class="btn btn-warning">
+      </td>
+    </tr>
+  </tbody>
+</table>

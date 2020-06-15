@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Product } from 'src/app/shared/classes/product.model';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { ActivatedRoute } from '@angular/router';
+import { BasketService } from 'src/app/shared/services/basket.service';
 
 @Component({
   selector: 'app-products-details',
@@ -14,7 +15,8 @@ export class ProductsDetailsComponent implements OnInit {
 
   constructor(private prService: ProductsService,
     private route: ActivatedRoute,
-    private location: Location, ) { }
+    private location: Location,
+    private basketService: BasketService) { }
 
   ngOnInit() {
     this.getData();
@@ -33,8 +35,18 @@ export class ProductsDetailsComponent implements OnInit {
   buy() {
     const key = this.route.snapshot.paramMap.get('key');
     this.data.key = key;
+    if (localStorage.length > 0) {
+      for (let j = 0; j < localStorage.length; j++) {
+        if (this.data.key === localStorage.key(j)) {
+          return console.log('tovar vge v korzuni');
+        }
+      }
+    }
     this.data.quantity = 1
     localStorage.setItem(`${key}`, JSON.stringify(this.data))
+    this.basketService.getItemsLength();
+
+
     // console.log(JSON.stringify(this.data), key)  
   }
 

@@ -1,0 +1,10 @@
+<div class="col-12">
+  <h1>{{data?.title}}</h1>
+</div>
+<div class="col-12">
+  <img [src]="data?.blogImage" alt="" style=" width: 100%; ">
+</div>
+<div class="col-12">
+  <p>{{data?.text}}</p>
+</div>
+<button class="btn btn-primary m-3" (click)="back()"><<< back</button>

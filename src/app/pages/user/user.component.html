@@ -1,0 +1,37 @@
+  <div class="col-12">
+    <p>Hi {{user?.userName}} </p>
+    <p>Full Name: {{user?.fullName}} </p>
+    <p>Address: {{user?.address}} </p>
+    <p>City: {{user?.city}} </p>
+    <p>Region: {{user?.state}} </p>
+    <p>Tel: {{user?.tel}} </p>
+<hr>
+    <form #myForm="ngForm" (ngSubmit)="submit(myForm)" novalidate>
+      <div class="col-12">
+        <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+        <input required pattern="[a-zA-Z]{2,} [a-zA-Z]{2,}" type="text" class="form-control" [(ngModel)]="name"
+          id="fname" name="name" placeholder="Yuriy Protsyk">
+        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+        <input required pattern="[a-zA-Z_.-]{2,} [0-9a-z]{1,}/[0-9a-z]{1,}" type="text" class="form-control"
+          [(ngModel)]="address" id="adr" name="address" placeholder="Street house/apartment">
+        <label for="city"><i class="fa fa-institution"></i> City</label>
+        <input required pattern="[a-zA-Z]{2,}" type="text" class="form-control" [(ngModel)]="city" id="city" name="city"
+          placeholder="Lviv">
+        <div class="row">
+          <div class="col-6">
+            <label for="state">Region</label>
+            <input required pattern="[a-zA-Z]{5,}" type="text" class="form-control" [(ngModel)]="state" id="state"
+              name="state" placeholder="Lvivska">
+          </div>
+          <div class="col-6">
+            <label for="tel">Telephone</label>
+            <input pattern="[\+]\d{2}[\(]\d{3}[\)]\d{3}[\-]\d{4}" [textMask]="{mask: mask}" type="text"
+              class="form-control" [(ngModel)]="tel" id="tel" name="tel" placeholder="+38(123)123-4567">
+          </div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="myForm.invalid" (click)="save()" class="btn btn-success m-2">Save</button>
+    </form>
+
+
+  </div>

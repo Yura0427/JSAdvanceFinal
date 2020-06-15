@@ -30,7 +30,7 @@
         <span class="input-group-text">grn</span>
       </div>
     </div>
-    
+
     <div class="input-group my-2">
       <select class="custom-select" [(ngModel)]="numbSpeeds" name="numbSpeeds">
         <option value="" disabled>Кількість швидкостей</option>
@@ -40,7 +40,7 @@
         <option>24</option>
         <option>27</option>
       </select>
-      
+
       <select class="custom-select" [(ngModel)]="type" name="type">
         <option selected>Тип</option>
         <option>Дорожній</option>
@@ -73,62 +73,63 @@
       <input type="file" (change)="upload($event)" accept=".png,.jpg" />
       <br><br>
       <div class="progress">
-        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+          [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
+          aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <br>
       <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
-          File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
+        File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
       </div>
       <br>
       <div class="btn-group" role="group" *ngIf="uploadState | async; let state">
-          <button type="button" class="btn btn-primary" (click)="task.pause()" [disabled]="state === 'paused'">Pause</button>
-          <button type="button" class="btn btn-primary" (click)="task.cancel()" [disabled]="!(state === 'paused' || state === 'running')">Cancel</button>
-          <button type="button" class="btn btn-primary" (click)="task.resume()" [disabled]="state === 'running'">Resume</button>
+        <button type="button" class="btn btn-primary" (click)="task.pause()"
+          [disabled]="state === 'paused'">Pause</button>
+        <button type="button" class="btn btn-primary" (click)="task.cancel()"
+          [disabled]="!(state === 'paused' || state === 'running')">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="task.resume()"
+          [disabled]="state === 'running'">Resume</button>
       </div>
     </div>
   </div>
   <div class="form-row" *ngIf="editImageStatus">
     <img [src]="productImage" alt="">
-    <button type="button" class="btn btn-lg btn-block btn-danger"
-      (click)="deleteImage()">delete</button>
+    <button type="button" class="btn btn-block btn-danger m-2" (click)="deleteImage()">Delete Image</button>
   </div>
   <!-- <div class="form-group">
     <label for="exampleFormControlFile1">Add foto</label>
     <input type="file" class="form-control-file" id="exampleFormControlFile1">
   </div> -->
-  <button *ngIf="!editStatus" type="submit" class="btn btn-primary" (click)="newProduct()">Add product</button>
-  <button *ngIf="editStatus" type="submit" class="btn btn-primary" (click)="saveProduct()">Save edit</button>
+  <button *ngIf="!editStatus" type="submit" class="btn btn-block btn-primary" (click)="newProduct()">Add
+    product</button>
+  <button *ngIf="editStatus" type="submit" class="btn btn-block btn-primary" (click)="saveProduct()">Save edit</button>
 
 </form>
 <div class="col-md-auto">
+  <input type="search" class="form-control m-2" [(ngModel)]="searchKey" name="searchKey" placeholder="search by key">
   <table class="table">
     <thead>
       <tr>
         <th [class.active]="order === 'key'" (click)="setOrder('key')">
           key <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
         </th>
-        <th [class.active]="order === 'brend'" (click)="setOrder('brend')"
-          class="mdl-data-table__cell--non-numeric">
+        <th [class.active]="order === 'brend'" (click)="setOrder('brend')" class="mdl-data-table__cell--non-numeric">
           brend <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
         </th>
-        <th [class.active]="order === 'price'" (click)="setOrder('price')"
-          class="mdl-data-table__cell--non-numeric">
+        <th [class.active]="order === 'price'" (click)="setOrder('price')" class="mdl-data-table__cell--non-numeric">
           price <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
         </th>
-        <th [class.active]="order === 'number'" (click)="setOrder('number')">
-          Phone number <span [hidden]="reverse">▼</span>
-          <span [hidden]="!reverse">▲</span>
-        </th>
+
         <th>Edit</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let pr of products | orderBy: order:reverse:'case-insensitive'">
+      <tr *ngFor="let pr of products | orderBy: order:reverse:'case-insensitive' | searchKey : searchKey">
         <td>{{ pr.key }}</td>
         <td>{{ pr.brend }}</td>
         <td>{{ pr.price }}</td>
-        <td>{{ pr.number }}</td>
+
         <td>
           <input type="button" (click)="edit(pr)" value="Edit" class="btn btn-warning">
         </td>

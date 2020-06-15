@@ -1,6 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-md navbar-dark sticky-top">
   <div class="container-fluid">
-    <!-- <a class="navbar-brand" href="#"><img style="opacity: .8; border-radius: 30px;" src="../../../assets/img/velo-logo.jpg" alt=""></a> -->
     <a class="navbar-brand" href="#"><i style="opacity: .8;" class="fas fa-bicycle fa-3x"></i></a>
 
     <button (click)="isMenuCollapsed = !isMenuCollapsed" class="navbar-toggler" type="button" data-toggle="collapse">
@@ -25,29 +24,28 @@
           <a class="nav-link" (click)="isMenuCollapsed = true" [routerLink]="[ '/contacts' ]"
             routerLinkActive="active">Contacts</a>
         </li>
-        <li *ngIf="currentUser?.loginStatus&&currentUser?.userAdmin" class="nav-item " style="margin-left: 10px;">
+        <li *ngIf="currentUser?.userAdmin || itsLogin?.userAdmin" class="nav-item " style="margin-left: 10px;">
           <a class="nav-link" (click)="isMenuCollapsed = true" [routerLink]="[ '/admin' ]"
             routerLinkActive="active">Admin</a>
         </li>
       </ul>
 
-      <button *ngIf="!currentUser?.loginStatus" (click)="isMenuCollapsed = true" (click)="openModal(template)"
+      <button *ngIf="!itsLogin" (click)="isMenuCollapsed = true" (click)="openModal(template)"
         class="btn btn-outline-success my-2 " type="button" style="margin-left: 10px;"><i class="fa fa-sign-in"
           aria-hidden="true"></i>Login</button>
-      <button *ngIf="currentUser?.loginStatus" (click)="isMenuCollapsed = true" (click)="openModal(template1)"
+      <button *ngIf="itsLogin" (click)="isMenuCollapsed = true" (click)="openModal(template1)"
         class="btn my-2 " type="button" style="margin-left: 10px;">Hi <i class="fa fa-user-circle"
           aria-hidden="true"></i>
-        {{currentUser.userName}}</button>
-      <button (click)="isMenuCollapsed = true" [routerLink]="[ '/basket' ]" routerLinkActive="active" class="btn my-2"
+        {{ itsLogin.userName|| currentUser.userName}}</button>
+      <button (click)="isMenuCollapsed = true" [routerLink]="[ '/basket' ]" routerLinkActive="active" class="btn my-2 basket"
         type="button">
         <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+        <p class="basketItems">{{items}}</p>
       </button>
     </div>
-
   </div>
-
 </nav>
-
+<br>
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left "><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i></h4>
@@ -60,50 +58,52 @@
       <li [ngbNavItem]="1">
         <a ngbNavLink>SignIn</a>
         <ng-template ngbNavContent>
-          <form>
+          <form  novalidate>
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
-              <input [(ngModel)]="SignInEmail" name="SignInEmail" type="email" class="form-control"
-                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <input [(ngModel)]="SignInEmail" name="SignInEmail"
+                type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter email">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input [(ngModel)]="SignInPass" name="SignInPass" type="password" class="form-control"
-                id="exampleInputPassword1" placeholder="Password">
+              <input  [(ngModel)]="SignInPass" name="SignInPass" type="password"
+                class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
-            <button (click)="SignInUser()" type="submit" class="btn btn-primary">SignIn</button>
+            <button  (click)="SignInUser()" type="submit"
+              class="btn btn-primary">SignIn</button>
           </form>
         </ng-template>
       </li>
       <li [ngbNavItem]="2">
         <a ngbNavLink>SignUp</a>
         <ng-template ngbNavContent>
-          <form>
+          <form #formReg="ngForm" (ngSubmit)="submit(formReg)" novalidate>
             <div class="form-group">
               <label for="exampleInputName">Name</label>
-              <input [(ngModel)]="userName" name="userName" type="text" class="form-control" id="exampleInputName"
-                placeholder="Name">
+              <input required pattern="[a-zA-Z0-9]{5,}" [(ngModel)]="userName" name="userName" type="text"
+                class="form-control" id="exampleInputName" placeholder="Name">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input [(ngModel)]="userEmail" name="userEmail" type="email" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Enter email">
+                required pattern="[a-zA-Z0-9_.-]+@[a-z]+\.[a-z]{2,3}" aria-describedby="emailHelp"
+                placeholder="Enter email">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input [(ngModel)]="userPass" name="userPass" type="password" class="form-control"
-                id="exampleInputPassword1" placeholder="Password">
+              <input [(ngModel)]="userPass" name="userPass" type="password" class="form-control" required
+                pattern="[a-zA-Z0-9]{5,}" id="exampleInputPassword1" placeholder="Password">
             </div>
-            <button (click)="newUser()" type="submit" class="btn btn-primary">SignUp</button>
+            <button [disabled]="formReg.invalid" (click)="newUser()" type="submit"
+              class="btn btn-primary">SignUp</button>
           </form>
         </ng-template>
       </li>
     </ul>
-
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
-
   </div>
 </ng-template>
 
@@ -119,17 +119,16 @@
     </div>
     <div class="container">
       <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" disabled>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="text" placeholder="Enter Password" name="psw" disabled>
-
+      <input type="text" class="form-control" name="uname" disabled value="{{itsLogin?.userName||currentUser.userName}}">
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Password" name="email" disabled>
-    </div>
+      <input type="text" class="form-control" name="email" disabled value="{{itsLogin?.userEmail||currentUser.userEmail}}">
 
+    </div>
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Log Out</button>
+      <button type="button" (click)="modalRef.hide()" [routerLink]="[ '/user' ]" class="btn btn-block btn-danger">Особистий кабінет</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" (click)="logOut()" class="btn btn-block btn-danger">Log Out</button>
     </div>
   </form>
 </ng-template>

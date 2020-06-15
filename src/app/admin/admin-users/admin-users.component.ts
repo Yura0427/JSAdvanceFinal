@@ -10,7 +10,7 @@ import { User } from 'src/app/shared/classes/user.model';
 })
 export class AdminUsersComponent implements OnInit {
 
-  @Input() user: User;
+  user: User;
 
   users:Array<User>;
 
@@ -42,7 +42,7 @@ export class AdminUsersComponent implements OnInit {
   }
  
   deleteUser(user) {
-    // console.log(user.key)
+    console.log(user.key)
     this.userService
       .deleteUser(user.key)
       .catch(err => console.log(err));

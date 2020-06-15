@@ -8,17 +8,22 @@
       <label>Email: </label> {{user.userEmail}}
     </div>
     <div>
-      <label>Pass: </label> {{user.userPass}}
+      <label>Admin: </label> {{user.userAdmin}}
     </div>
     <div>
-      <label>Admin: </label> {{user.userAdmin}}
+      <label>Online: </label> {{user.loginStatus}}
     </div>
     <div>
       <label>key: </label> {{user.key}}
     </div>
-    <span class="button is-small btn-primary" *ngIf='user.userAdmin' (click)='updateActive(false, user)'>Admin Inactive</span>
+    <div>
+      <label>AuthId: </label> {{user.id}}
+    </div>
+    <span class="button is-small btn-primary" *ngIf='user.userAdmin' (click)='updateActive(false, user)'>Admin
+      Inactive</span>
 
-    <span class="button is-small btn-primary" *ngIf='!user.userAdmin' (click)='updateActive(true, user)'>Admin Active</span>
+    <span class="button is-small btn-primary" *ngIf='!user.userAdmin' (click)='updateActive(true, user)'>Admin
+      Active</span>
 
     <span class="button is-small btn-danger" (click)='deleteUser(user)'>Delete</span>
 

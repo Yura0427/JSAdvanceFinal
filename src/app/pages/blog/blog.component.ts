@@ -1,5 +1,7 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, OnInit } from '@angular/core';
+import { BlogService } from 'src/app/shared/services/blog.service';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-blog',
@@ -7,15 +9,23 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent implements OnInit {
-  modalRef: BsModalRef;
+  
+  blogs:Array<any>;
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private blogService: BlogService,) { }
 
   ngOnInit() {
+    this.blogService.getBlogsList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(blogs => {
+      this.blogs = blogs;
+    });
   }
   
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
+
   
 }

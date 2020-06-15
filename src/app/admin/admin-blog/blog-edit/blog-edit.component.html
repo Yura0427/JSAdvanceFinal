@@ -1,0 +1,16 @@
+<div class="col-12">
+  <input type="text" class="form-control col-11 m-3" [(ngModel)]="title" name="title">
+</div>
+<div class="col-12">
+  <img [src]="data?.blogImage" alt="" style=" width: 100%; ">
+</div>
+<div class="col-12">
+  <textarea class="form-control col-11 m-3" style="min-height: 75px;" [(ngModel)]="description" name="description"></textarea>
+</div>
+<div class="col-12">
+  <textarea class="form-control col-11 m-3" style="height: 500px;" [(ngModel)]="text" name="text"></textarea>
+</div>
+
+<input type="button" class="btn btn-success m-3" (click)="save()" value="Save edit">
+<button class="btn btn-primary m-3" (click)="back()">
+  <<< back</button>

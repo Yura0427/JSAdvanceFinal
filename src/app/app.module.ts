@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
@@ -27,6 +27,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AdminBlogComponent } from './admin/admin-blog/admin-blog.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterPipe } from './shared/pipes/filter.pipe';
@@ -34,11 +35,22 @@ import { BasketComponent } from './pages/basket/basket.component';
 import { FilTypePipe } from './shared/pipes/fil-type.pipe';
 import { FilPricePipe } from './shared/pipes/fil-price.pipe';
 import { Ng5SliderModule } from 'ng5-slider';
-import { AdminOrderComponent } from './admin/admin-order/admin-order/admin-order.component';
+import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
 import { FilFramePipe } from './shared/pipes/fil-frame.pipe';
 import { FilWheelPipe } from './shared/pipes/fil-wheel.pipe';
 import { FilSpeedsPipe } from './shared/pipes/fil-speeds.pipe';
 import { OrderModule } from 'ngx-order-pipe';
+import { SearchKeyPipe } from './shared/pipes/search-key.pipe';
+import { TextMaskModule } from 'angular2-text-mask';
+
+import {
+  NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule
+} from 'ngx-ui-loader';
+import { loaderConfig } from './preloader-config';
+import { BlogDetalsComponent } from './pages/blog/blog-detals/blog-detals.component';
+import { UserComponent } from './pages/user/user.component';
+import { BlogEditComponent } from './admin/admin-blog/blog-edit/blog-edit.component';
+
 
 
 @NgModule({
@@ -62,6 +74,11 @@ import { OrderModule } from 'ngx-order-pipe';
     FilFramePipe,
     FilWheelPipe,
     FilSpeedsPipe,
+    SearchKeyPipe,
+    AdminBlogComponent,
+    BlogDetalsComponent,
+    UserComponent,
+    BlogEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +98,9 @@ import { OrderModule } from 'ngx-order-pipe';
     BrowserAnimationsModule,
     Ng5SliderModule,
     OrderModule,
+    TextMaskModule,
+    NgxUiLoaderModule.forRoot(loaderConfig),
+    NgxUiLoaderRouterModule
   ],
   providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]

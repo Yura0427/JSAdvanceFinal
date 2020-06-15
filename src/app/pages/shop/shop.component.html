@@ -1,6 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-5 col-sm-4 col-md-3 col-lg-2">
+    <div class="menu-colapse col-12 p-2">
+      <button [ngClass]="{'hiden': hiden}" (click)="hiden=!hiden">Filter ▼ </button>
+      <button [ngClass]="{'hiden': !hiden}" (click)="hiden=!hiden">Filter ▲ </button>
+    </div>
+    <div class="menu  col-xs-12  col-sm-4 col-md-3 col-lg-2" [ngClass]="{'hiden': !hiden}">
       <div class="flex-column nav-pills">
         <div class="sidebar">
           <p>Виробник
@@ -23,10 +27,10 @@
             <div *ngIf="dropPrice">
               <div class="form-row">
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="From" [(ngModel)]="minPrise" name="minPrise">
+                  <input type="number" class="form-control" placeholder="From" [(ngModel)]="minPrise" name="minPrise">
                 </div>
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="To" [(ngModel)]="maxPrise" name="maxPrise">
+                  <input type="number" class="form-control" placeholder="To" [(ngModel)]="maxPrise" name="maxPrise">
                 </div>
               </div>
             </div>
@@ -135,30 +139,32 @@
         </div>
       </div>
     </div>
-    <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+    <div class="tovar col-12 col-sm-8 col-md-9 col-lg-10">
       <div class="tab-content">
         <div class="row">
-          <div class="col-12">
-            <a [class.active]="order === 'price'" (click)="setOrder('price')">
+          <div class="col-12 mt-1 mb-3">
+            <span>Sort by: </span>
+            <a class="ml-2" [class.active]="order === 'price'" (click)="setOrder('price')">
               Price <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
             </a>
-            <a [class.active]="order === 'dateAdd'" (click)="setOrder('dateAdd')">
-              dateAdd <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+            <a class="ml-2" [class.active]="order === 'dateAdd'" (click)="setOrder('dateAdd')">
+              Date add <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
             </a>
           </div>
 
-          <div class="card col-xs-12 col-md-6 col-lg-3 mt-2" *ngFor="let pr of products | filter:selectedBrend 
+          <div class="card col-xs-12 col-md-6 col-lg-3 mt-2 mb-2 p-2" *ngFor="let pr of products | filter:selectedBrend 
           | filType:selectedType | filPrice:minPrise:maxPrise | filFrame:selectedFrame | filWheel:selectedWheel
           | filSpeeds:selectedSpeeds | orderBy: order:reverse:false">
-            <img [src]="pr.productImage" class="card-img-top">
+            <div class="prodimg">
+              <img [src]="pr.productImage" class="card-img-top">
+            </div>
             <div class="card-body">
               <h5 class="card-title">{{pr.brend}}</h5>
               <p class="card-text">Тип: {{pr.type}}</p>
               <p class="card-text">{{pr.sizeFrame}}, {{pr.sizeWheel}}</p>
               <h3 class="text-danger">{{pr.price}} ₴</h3>
               <a class="btn btn-primary mr-1 mt-1" [routerLink]="[ '/shop/', pr.key ]">more details</a>
-              <button class="btn btn-primary mt-1" (click)="buy(pr)">Buy</button>
-
+              <button class="btn btn-primary mt-1" (click)="buy(pr, template)">Buy</button>
             </div>
           </div>
         </div>
@@ -166,3 +172,11 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Товар додано до корзини! <br> Щоб завершити покупку перейдіть в корзину і оформіть замовлення...</p>
+    <button type="button" (click)="modalRef.hide()" class="btn btn-success" >Ok</button>
+  </div>
+</ng-template>

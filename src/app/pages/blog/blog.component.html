@@ -1,80 +1,12 @@
-<button (click)="openModal(template)" type="button" class="btn btn-outline-info btn-lg">Читать дальше</button>
-
-<div class="row jumbotron">
+<div class="row col-12 m-2" *ngFor="let blog of blogs | orderBy: 'dateAdd':true">
   <div class="col-12">
-    <h1>Lorem ipsum dolor sit amet.</h1>
+    <h1>{{blog.title}}</h1>
   </div>
   <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4">
-    <img src="../../../assets/img/12.jpg" alt="" style=" width: 100%; ">
+    <img [src]="blog.blogImage" alt="" style=" width: 100%; ">
   </div>
   <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam est praesentium, dolor omnis ab qui ipsa a
-      recusandae et modi corrupti! Magnam dolore fugiat quos in libero rerum sit fuga, voluptates praesentium fugit
-      voluptatem blanditiis iusto odit impedit laboriosam sequi esse aut similique velit dolores mollitia et quibusdam.
-      Minima saepe quod commodi doloremque, atque repudiandae nam. Soluta voluptates quasi praesentium illum hic
-      perferendis alias recusandae velit quis, totam fugit, molestias et obcaecati excepturi in? A odit magnam dolorem
-      necessitatibus libero ea rerum facilis reprehenderit officiis, autem, fugit animi accusantium ad assumenda minus?
-      Beatae sed assumenda deleniti rem cupiditate modi nihil voluptatem animi. Itaque culpa, ad fugit dignissimos alias
-      aspernatur aperiam, beatae eaque error sapiente, iste corporis sunt harum natus voluptatum incidunt? Architecto,
-      error, officia autem corrupti quibusdam similique exercitationem obcaecati maxime eligendi fuga voluptas. Omnis
-      voluptatibus doloremque, nesciunt, consectetur illo quia obcaecati doloribus fuga inventore voluptatem alias
-      dignissimos aliquid cum. Amet, atque qui! Iste ratione numquam eveniet accusantium velit neque nobis tempora qui
-      modi labore non totam beatae adipisci sequi voluptas blanditiis esse aperiam, nemo eius est reiciendis aliquam
-      saepe magni. Recusandae at quibusdam, vero, repellat, voluptatibus expedita numquam mollitia et sunt saepe
-      doloremque velit repellendus placeat voluptatem ducimus itaque veritatis quae porro enim ut explicabo. Possimus
-      facilis, voluptatibus vero sed unde quisquam quibusdam inventore recusandae deserunt consequatur adipisci
-      perferendis molestiae earum itaque soluta. Eos deleniti dolor, corporis quas expedita consequuntur laboriosam
-      sequi? Ratione sit perspiciatis doloremque. Accusamus odit ratione non voluptatem culpa delectus sint perferendis
-      consectetur soluta porro minus, ut fugit veniam temporibus placeat accusantium numquam quae praesentium laboriosam
-      inventore ipsum quasi fuga eos voluptate. Quae, reprehenderit voluptatem veniam explicabo dicta dolorem quaerat
-      qui voluptates iusto exercitationem voluptas est recusandae fugit hic nihil. Incidunt ratione assumenda autem,
-      totam debitis at corporis ex libero ut quo laudantium placeat architecto laboriosam illo, unde labore ab
-      reprehenderit suscipit beatae sed doloribus voluptate sit commodi. Sunt illum pariatur id aliquam alias eos,
-      itaque iste? Corrupti provident, obcaecati, nesciunt, debitis amet aut quasi expedita commodi quae hic minima.
-      Commodi, obcaecati. Sequi maiores quia optio fuga maxime fugit. Quae ipsam repellendus tempora commodi libero
-      dolorem veritatis consequuntur, quibusdam, laudantium nesciunt, atque amet tenetur minus! Voluptatibus odit
-      voluptatum nostrum quaerat officia adipisci cupiditate similique repellat aliquid ipsum! Accusantium minima
-      consequatur qui quas, ex fuga? Officia ipsa nihil similique nulla harum nobis sapiente hic quo a velit deleniti,
-      nesciunt, dolore neque eligendi! Quisquam nesciunt aut sapiente culpa expedita dolor hic, atque accusantium! Eos
-      delectus veniam vero a obcaecati debitis nihil voluptates nobis repudiandae. Adipisci natus totam reiciendis id
-      commodi ipsum aspernatur non nulla, quibusdam ea laudantium quas quia maiores. Quod iste, obcaecati numquam
-      debitis vitae sapiente ipsa voluptas. Maiores expedita suscipit quia soluta nobis? Libero natus, fuga odio
-      doloribus quia, saepe, rerum perferendis iure ut eveniet molestias praesentium eum minima dolores illum unde non
-      consequuntur. Odio quod culpa tempora nemo, aliquid blanditiis sequi rerum corrupti, consequuntur ex quis impedit
-      eius non mollitia! Beatae, aut inventore. Asperiores error vero soluta deserunt eum beatae laudantium sapiente
-      quae placeat tenetur?</p>
-    <a href="#" [routerLink]="[ '/blog' ]" routerLinkActive="active">
-      <button (click)="openModal(template)" type="button" class="btn btn-outline-info btn-lg">Читать дальше</button></a>
+    <p>{{blog.description}}</p>
+    <a class="nav-link" [routerLink]="[ '/blog/', blog.key ]" routerLinkActive="active"><input type="button"  value="Читати дальше" class="btn btn-warning"></a>
   </div>
 </div>
-
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="container">
-      <form>
-        <div class="form-group">
-          <label>Title</label>
-          <input type="text" class="form-control" placeholder="Title">
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlFile1">Example file input</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
-        <div class="form-group">
-          <label>Description</label>
-          <input type="text" class="form-control" placeholder="Description">
-        </div>
-        <div class="form-group">
-          <label >Example textarea</label>
-          <textarea class="form-control"></textarea>
-        </div>
-      </form>
-    </div>
-  </div>
-</ng-template>

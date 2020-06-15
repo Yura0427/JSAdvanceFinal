@@ -22,21 +22,8 @@ export class OrderService {
     return this.usersRef;
   }
 
-  // deleteOrder(key: string): Promise<void> {
-  //   return this.usersRef.doc(key).delete();
-  // }
+  deleteOrder(key: string): Promise<void> {
+    return this.usersRef.doc(key).delete();
+  }
  
-
- 
-  // deleteAll() {
-  //   this.usersRef.get().subscribe(
-  //     querySnapshot => {
-  //       querySnapshot.forEach((doc) => {
-  //         doc.ref.delete();
-  //       });
-  //     },
-  //     error => {
-  //       console.log('Error: ', error);
-  //     });
-  // }
 }

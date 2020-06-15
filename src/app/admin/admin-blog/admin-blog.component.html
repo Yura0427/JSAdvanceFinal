@@ -1,0 +1,73 @@
+<button class="btn btn-outline-primary m-2" (click)="openXl(content)">Новий блог</button>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Новий блог</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Title" [(ngModel)]="title" name="title">
+        </div>
+        <div class="form-group row" *ngIf="!editImageStatus">
+          <div class="card-body">
+            <h5 class="card-title">Select a file for upload:</h5>
+            <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+            <br><br>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br>
+            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+              File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
+            </div>
+            <br>
+            <div class="btn-group" role="group" *ngIf="uploadState | async; let state">
+              <button type="button" class="btn btn-primary" (click)="task.pause()"
+                [disabled]="state === 'paused'">Pause</button>
+              <button type="button" class="btn btn-primary" (click)="task.cancel()"
+                [disabled]="!(state === 'paused' || state === 'running')">Cancel</button>
+              <button type="button" class="btn btn-primary" (click)="task.resume()"
+                [disabled]="state === 'running'">Resume</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" class="form-control" placeholder="Description" [(ngModel)]="description"
+            name="description">
+        </div>
+        <div class="form-group">
+          <label>Example textarea</label>
+          <textarea class="form-control" [(ngModel)]="text" name="text"></textarea>
+        </div>
+        <button type="submit" (click)="crBlog()" class="btn btn-success">Новий блог</button>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th> # </th>
+      <th> Title </th>
+      <th> Edit </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let blog of blogs | orderBy: 'dateAdd':true; let i=index">
+      <td><h5>{{i+1}}: </h5></td>
+      <td><h5>{{blog.title}}</h5></td>
+      <td>
+        <input type="button" [routerLink]="[ '/blog-edit/', blog.key ]" (click)="editBlog(blog)" value="Edit" class="btn btn-warning">
+      </td>
+    </tr>
+  </tbody>
+</table>
+

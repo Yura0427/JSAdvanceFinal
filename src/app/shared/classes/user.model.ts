@@ -4,10 +4,9 @@ export class User {
     key: string;
     userName: string;
     userEmail: string;
-    userPass: string;
     userAdmin: boolean;
     loginStatus:boolean
-
+    dbID: string;
 }
 // export class User implements IUser{
 //     constructor(

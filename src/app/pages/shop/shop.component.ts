@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { Product } from 'src/app/shared/classes/product.model';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { map } from 'rxjs/operators';
@@ -6,7 +6,8 @@ import { Brend } from 'src/app/shared/classes/brend.model';
 import { BrendService } from 'src/app/shared/services/brend.service';
 import { Options, LabelType } from 'ng5-slider';
 import { ActivatedRoute } from '@angular/router';
-
+import { BasketService } from 'src/app/shared/services/basket.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-shop',
@@ -14,6 +15,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
+
+  modalRef: BsModalRef;
 
   arrBrend: Array<Brend>;
   products: Array<Product>
@@ -36,14 +39,22 @@ export class ShopComponent implements OnInit {
   // sort
   order: string = '';
   reverse: boolean = false;
+  //Menu
+  hiden: boolean
 
   constructor(private productService: ProductsService,
     private brendService: BrendService,
-    private route: ActivatedRoute, ) { }
+    private route: ActivatedRoute,
+    private basketService: BasketService,
+    private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getProductsList()
     this.getBrendsList()
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   getProductsList() {
@@ -111,9 +122,18 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  buy(i) {
+  buy(i, template) {
+    if (localStorage.length > 0) {
+      for (let j = 0; j < localStorage.length; j++) {
+        if (i.key === localStorage.key(j)) {
+          return console.log('tovar vge v korzuni');
+        }
+      }
+    }
+    i.quantity = 1
     localStorage.setItem(`${i.key}`, JSON.stringify(i))
-    // console.log(JSON.stringify(this.data), key)  
+    this.basketService.getItemsLength();
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   setOrder(value: string) {

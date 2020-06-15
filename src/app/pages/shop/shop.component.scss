@@ -1,17 +1,66 @@
-.sidebar{
-    margin-top: 20px;
-    padding-right: 5px;
+.sidebar {
+  margin-top: 20px;
+  padding-right: 5px;
 }
-.container-fluid{
-    min-height: 75vh;
+
+.container-fluid {
+  min-height: 75vh;
 }
 
 div a span {
-    visibility: hidden;
+  visibility: hidden;
 }
+
 div a.active {
-    color: red;
+  padding: 2px;
+  margin: 2px;
+  background-color: greenyellow;
+  border-radius: 5px;
 }
+
 div a.active span {
-    visibility: visible;
+  visibility: visible;
+}
+
+
+
+.menu-colapse {
+  display: none;
+}
+
+@media screen and (max-width: 576px) {
+  .hiden {
+    display: none !important;
+  }
+
+  .menu-colapse {
+    display: block;
+  }
+}
+
+
+.card {
+  background-color: honeydew;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  z-index: 999;
+}
+
+.prodimg {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 325px;
+}
+
+.prodimg img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.row{
+  font-family: 'Oranienbaum';
 }

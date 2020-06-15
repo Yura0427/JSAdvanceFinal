@@ -4,63 +4,60 @@
       <img src="../../../assets/img/18.jpg" alt="First slide" style=" width: 100%;">
       <div class="carousel-caption d-none d-md-block">
         <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <p>Тут може бути ваша реклама</p>
       </div>
     </slide>
     <slide>
       <img src="../../../assets/img/22.jpg" alt="Second slide" style=" width: 100%;">
       <div class="carousel-caption d-none d-md-block">
         <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Тут може бути ваша реклама</p>
       </div>
     </slide>
     <slide>
       <img src="../../../assets/img/23.jpg" alt="Third slide" style=" width: 100%; ">
       <div class="carousel-caption d-none d-md-block">
         <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        <p>Тут може бути ваша реклама</p>
       </div>
     </slide>
   </carousel>
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-12 my-2">
-        <p>НОВІ НАДХОДЖЕННЯ</p>
-      </div>      
+        <h2>НОВІ НАДХОДЖЕННЯ</h2>
+      </div>
       <div class="col-xs-12 col-sm-6 col-md-4 product" *ngFor="let item of products | orderBy:'dateAdd':true">
-        <img [src]="item.productImage" class="card-img-top">
+        <div class="prodimg">
+          <img [src]="item.productImage" class="card-img-top">
+        </div>
         <p>{{item.brend}}</p>
       </div>
-      
+
       <div class="col-12 my-2">
         <button class="btn btn-outline-info" [routerLink]="[ '/shop' ]">ОГЛЯД КОЛЕКЦІЇ</button>
       </div>
 
     </div>
+
     <div class="row jumbotron">
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4">
-        <img src="../../../assets/img/12.jpg" alt="" style=" width: 100%; ">
+      <div class="col-12 my-2 text-center">
+        <h2>Наш блог</h2>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum quaerat nisi, impedit beatae voluptatem
-          saepe
-          quisquam eligendi, ex ipsa totam amet quos veniam quo consequuntur! Voluptate quam consequatur excepturi id
-          nobis, sunt eos, nam error dignissimos eligendi corporis provident natus commodi ut nemo fugit temporibus!
-          Aliquid, deleniti. Possimus numquam facere repellat dicta mollitia asperiores quos vitae molestias error
-          recusandae, quasi sit aut distinctio alias eum deserunt. Consequatur neque recusandae repellat, natus fugiat
-          rerum molestiae fuga? Molestias id dolorum sit. Ipsam facilis accusamus nobis nesciunt aperiam at blanditiis
-          magnam voluptates voluptatibus facere in atque, eum, ea earum exercitationem. Qui, nemo quidem.</p>
-        <a href="#" [routerLink]="[ '/blog' ]" routerLinkActive="active"><button type="button"
-            class="btn btn-outline-info btn-lg">Читать дальше</button></a>
+      <div class="row blog" *ngFor="let item of blog | orderBy:'dateAdd':true">
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4">
+          <img [src]="item.blogImage" alt="" style=" width: 100%; ">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8">
+          <p>{{item.description}}</p>
+          <a href="#" [routerLink]="[ '/blog' ]" routerLinkActive="active"><button type="button"
+              class="btn btn-outline-info btn-lg">Читать дальше</button></a>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <button class="checkbox icons">
-        <i class="material-icons">check_box</i>
-      </button>
-      
+
 
     </div>
+
   </div>
 
 </div>

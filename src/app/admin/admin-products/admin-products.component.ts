@@ -47,6 +47,8 @@ export class AdminProductsComponent implements OnInit {
   editKey: string
   editImageStatus: boolean
 
+  searchKey
+  
   constructor(private productService: ProductsService,
     private modalService: BsModalService,
     private brendService: BrendService,
@@ -163,6 +165,7 @@ export class AdminProductsComponent implements OnInit {
 
   del(pr) {
     this.productService.deleteProduct(pr.key)
+    this.afStorage.storage.refFromURL(pr.productImage).delete();
   }
 
   saveProduct() {
@@ -176,6 +179,8 @@ export class AdminProductsComponent implements OnInit {
       type: this.type,
       productImage: this.productImage,
     })
+    this.editImageStatus = false
+    this.editStatus = false
     this.resetForm()
   }
 

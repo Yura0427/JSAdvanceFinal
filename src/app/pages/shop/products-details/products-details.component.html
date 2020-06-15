@@ -1,20 +1,22 @@
 <div class="container">
     <div class="card mb-3 col-12 mt-2">
-      <div class="row no-gutters">
+      <div class="row">
         <div class="col-md-4">
           <img [attr.src]="data?.productImage" class="card-img" alt="..." style="width: 100%;">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h3 class="card-title">{{data?.brend}}</h3>
+            <h3 class="card-title">Характеристики {{data?.brend}}</h3>
             <p class="card-text">Клас :{{data?.type}}</p>
             <p class="card-text">Розмір рами :{{data?.sizeFrame}}</p>
             <p class="card-text">Діаметр коліс :{{data?.sizeWheel}}</p>
             <p class="card-text">Кількість швидкостей :{{data?.speedsNumber}}</p>
             <p class="card-text text-danger">Цiна {{data?.price}}</p>
-            <button (click)="buy()">Buy</button>
+            <h3 class="card-title">Опис  {{data?.brend}}</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi ratione facilis nam in officiis, distinctio quam corrupti consequuntur harum excepturi perspiciatis, laudantium dolorum inventore fugit? Blanditiis necessitatibus dolorem doloremque natus, repellendus modi enim quos cumque temporibus dicta repudiandae nesciunt ea, pariatur alias quis. Alias, qui! Consectetur expedita doloremque sit accusamus!</p>
+            <button class="btn btn-primary mr-3" (click)="buy()">Buy</button>
 
-            <button (click)="back()">back</button>
+            <button class="btn btn-primary " (click)="back()"><<< back</button>
           </div>
         </div>
       </div>

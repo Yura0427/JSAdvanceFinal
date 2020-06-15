@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { User } from '../classes/user.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,8 +44,20 @@ export class UsersService {
       });
   }
 
-  getUsers() {
-    return this.usersRef
+  loginUser(email, pass) {
+    this.usersRef.get().subscribe(
+      querySnapshot => {
+        querySnapshot.forEach((doc) => {
+          if (email === doc.data().userEmail) {
+            if (pass === doc.data().userPass) {
+              this.usersRef.doc(doc.id).update({ loginStatus: true })
+              const us = doc.data()
+              us.loginStatus = true
+              localStorage.setItem('user', JSON.stringify(us))
+            }
+          }
+        });
+      });
   }
 
 }

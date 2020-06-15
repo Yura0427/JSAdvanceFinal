@@ -1,3 +1,43 @@
-<div class="container-fluid">
-    <p>contacts works!</p>
+<div class="container-fluid row">
+  <div class="col-6">
+    <h3 class="title">Лишити відгук</h3>
+    <form (ngSubmit)="processForm(myForm)" #myForm="ngForm" novalidate>
+      <div class="mb-3">
+        <input type="text" name="name" class="form-control" placeholder="Your Name" [(ngModel)]="name" required
+          minlength="3" #nameInput="ngModel">
+        <div class="help is-error" *ngIf="nameInput.invalid && nameInput.dirty">
+          Name is required and needs to be at least 3 characters long.
+        </div>
+      </div>
+      <div class="mb-3">
+        <input type="email" name="email" class="form-control" placeholder="Your Email" [(ngModel)]="email" required
+          email #emailInput="ngModel">
+        <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
+          Needs to be a valid email.
+        </div>
+      </div>
+      <!-- message -->
+      <div class="mb-3">
+        <textarea class="form-control" name="message" placeholder="What's on your mind?" [(ngModel)]="message" required
+          #messageInput="ngModel"></textarea>
+        <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
+          Your message is required!
+        </div>
+      </div>
+      <button [disabled]="myForm.invalid" type="submit" class="btn btn-success mb-3">Submit</button>
+    </form>
+  </div>
+  <div class="col-6">
+    <h3 class="title">Наші контакти:</h3>
+    <p>м. Львів, вул.Блаbla 123</p>
+    <p>тел.: +38(063)123-4567</p>
+    <p>email: bla@gmail.com</p>
+  </div>
+  <div class="col-12 m-2">
+        <iframe
+    src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d23956.876140341214!2d24.040080471244675!3d49.83687450164254!3m2!1i1024!2i768!4f13.1!5e0!3m2!1suk!2sua!4v1586088954208!5m2!1suk!2sua"
+    width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+    tabindex="0"></iframe>
+  </div>
+
 </div>
