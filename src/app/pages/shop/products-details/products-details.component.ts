@@ -27,9 +27,7 @@ export class ProductsDetailsComponent implements OnInit {
     this.prService.usersRef.doc(key).valueChanges().subscribe(
       data => {
         this.data = data
-        console.log(data)
       })
-    console.log(key)
   }
 
   buy() {
@@ -45,13 +43,9 @@ export class ProductsDetailsComponent implements OnInit {
     this.data.quantity = 1
     localStorage.setItem(`${key}`, JSON.stringify(this.data))
     this.basketService.getItemsLength();
-
-
-    // console.log(JSON.stringify(this.data), key)  
   }
 
   back(): void {
     this.location.back();
   }
-
 }
