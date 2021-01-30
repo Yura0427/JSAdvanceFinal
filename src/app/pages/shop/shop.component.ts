@@ -4,7 +4,6 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import { map } from 'rxjs/operators';
 import { Brend } from 'src/app/shared/classes/brend.model';
 import { BrendService } from 'src/app/shared/services/brend.service';
-import { Options, LabelType } from 'ng5-slider';
 import { ActivatedRoute } from '@angular/router';
 import { BasketService } from 'src/app/shared/services/basket.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
